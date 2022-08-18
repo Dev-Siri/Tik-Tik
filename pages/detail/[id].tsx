@@ -9,7 +9,7 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 import axios from 'axios';
 import { BASE_URL } from '../../utils';
-import type { DetailProps, DetailFetcherProps } from '../../types';
+import type { DetailProps, FetcherProps } from '../../types';
 import useAuthStore from '../../store/authStore';
 import LikeButton from '../../components/LikeButton';
 import Comments from '../../components/Comments';
@@ -150,7 +150,7 @@ const Detail: NextPage<DetailProps> = ({ postDetails }) => {
   );
 }
 
-export const getServerSideProps = async ({ params: { id } }: DetailFetcherProps) => {
+export const getServerSideProps = async ({ params: { id } }: FetcherProps) => {
   const { data } = await axios.get(`${BASE_URL}/api/post/${id}`);
 
   return {

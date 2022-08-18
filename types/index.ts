@@ -10,7 +10,7 @@ import type {
   FetcherProps,
   ProfileProps,
   SearchProps,
-  QueryFetcherProps
+  QueryFetcherProps,
 } from "./props";
 import type { GoogleUser, SanityUser } from "./user";
 import Video from "./video";
