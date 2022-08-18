@@ -154,7 +154,7 @@ export const getServerSideProps = async ({ params: { id } }: FetcherProps) => {
   const { data } = await axios.get(`${BASE_URL}/api/post/${id}`);
 
   return {
-      props: { postDetails: data }
+    props: { postDetails: data }
   }
 }
 
