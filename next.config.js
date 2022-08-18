@@ -7,7 +7,11 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['yt3.ggpht.com', 'lh3.googleusercontent.com']
-  }
+  },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
 }
 
 module.exports = nextConfig;
