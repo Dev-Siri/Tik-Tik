@@ -14,14 +14,14 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         <meta property="og:title" content="Tik Tik" />
         <meta property="og:description" content="Tik tik is a tik tok like video sharing app" />
         <meta property="og:image" content="/favicon.png" />
-        <meta property="og:url" content="https://tiktik-siri.vercel.app" />
+        <meta property="og:url" content="https://tik-tik-dev-siri.vercel.app" />
         <meta property="og:site_name" content="Tik Tik" />
         <meta name="twitter:title" content="Tik Tik" />
         <meta name="twitter:description" content="Tik tik is a tik tok like video sharing app" />
         <meta name="twitter:image" content="/favicon.png" />
-        <meta name="twitter:site" content="https://tiktik-siri.vercel.app" />
+        <meta name="twitter:site" content="https://tik-tik-dev-siri.vercel.app" />
         <meta name="twitter:creator" content="Dev-Siri" />
-        <link rel="canonical" href="https://tiktik-siri.vercel.app" />
+        <link rel="canonical" href="https://tik-tik-dev-siri.vercel.app" />
         <link rel="icon" href="/favicon.png" />
         <title>Tik Tik</title>
       </Head>
