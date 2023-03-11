@@ -1,23 +1,17 @@
-import client from './client';
-import {
-  topics,
-  footerList1,
-  footerList2,
-  footerList3,
-  BASE_URL
-} from './constants';
+import client from "./client";
+import { footerList1, footerList2, footerList3, topics } from "./constants";
 import {
   allPostsQuery,
+  allUsersQuery,
   postDetailQuery,
   searchPostsQuery,
   singleUserQuery,
-  allUsersQuery,
+  topicPostsQuery,
   userCreatedPostsQuery,
   userLikedPostsQuery,
-  topicPostsQuery
-} from './queries';
+} from "./queries";
 
-import createOrGetUser from './user';
+import { createOrGetUser } from "./user";
 
 export {
   client,
@@ -33,6 +27,5 @@ export {
   footerList1,
   footerList2,
   footerList3,
-  BASE_URL,
-  createOrGetUser
-}
+  createOrGetUser,
+};

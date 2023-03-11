@@ -1,43 +1,68 @@
-import { BsCode, BsEmojiSunglasses } from 'react-icons/bs';
-import { GiCakeSlice, GiGalaxy, GiLipstick } from 'react-icons/gi';
-import { FaPaw, FaMedal, FaGamepad } from 'react-icons/fa';
+import { BsCode } from "@react-icons/all-files/bs/BsCode";
+import { FaRegLaughSquint } from "@react-icons/all-files/fa/FaRegLaughSquint";
+import { GiCakeSlice } from "@react-icons/all-files/gi/GiCakeSlice";
+import { GiDragonSpiral } from "@react-icons/all-files/gi/GiDragonSpiral";
+import { GiLipstick } from "@react-icons/all-files/gi/GiLipstick";
+import { FaPaw } from "@react-icons/all-files/fa/FaPaw";
+import { FaMedal } from "@react-icons/all-files/fa/FaMedal";
+import { FaGamepad } from "@react-icons/all-files/fa/FaGamepad";
 
 export const topics = [
   {
-    name: 'coding',
+    name: "coding",
     icon: <BsCode />,
   },
   {
-    name: 'comedy',
-    icon: <BsEmojiSunglasses />,
+    name: "comedy",
+    icon: <FaRegLaughSquint />,
   },
   {
-    name: 'gaming',
+    name: "gaming",
     icon: <FaGamepad />,
   },
   {
-    name: 'food',
+    name: "food",
     icon: <GiCakeSlice />,
   },
   {
-    name: 'dance',
-    icon: <GiGalaxy />,
+    name: "dance",
+    icon: <GiDragonSpiral />,
   },
   {
-    name: 'beauty',
+    name: "beauty",
     icon: <GiLipstick />,
   },
   {
-    name: 'animals',
+    name: "animals",
     icon: <FaPaw />,
   },
   {
-    name: 'sports',
+    name: "sports",
     icon: <FaMedal />,
   },
 ];
 
-export const footerList1 = ['About', 'Newsroom', 'Store', 'Contact', 'Carrers', 'ByteDance', 'Creator Directory'];
-export const footerList2 = [ 'TikTik for Good','Advertise','Developers','Transparency','TikTik Rewards' ];
-export const footerList3 = [ 'Help', 'Safety', 'Terms', 'Privacy', 'Creator Portal', 'Community Guidelines' ];
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+export const footerList1 = [
+  "About",
+  "Newsroom",
+  "Store",
+  "Contact",
+  "Carrers",
+  "ByteDance",
+  "Creator Directory",
+];
+export const footerList2 = [
+  "TikTik for Good",
+  "Advertise",
+  "Developers",
+  "Transparency",
+  "TikTik Rewards",
+];
+export const footerList3 = [
+  "Help",
+  "Safety",
+  "Terms",
+  "Privacy",
+  "Creator Portal",
+  "Community Guidelines",
+];

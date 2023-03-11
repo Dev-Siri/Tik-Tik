@@ -1,17 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true
-  },
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    appDir: true,
+  },
   images: {
-    domains: ['yt3.ggpht.com', 'lh3.googleusercontent.com']
+    domains: ["yt3.ggpht.com", "lh3.googleusercontent.com"],
   },
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
-}
+};
 
-module.exports = nextConfig;
+export default nextConfig;

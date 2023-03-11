@@ -1,35 +1,65 @@
-import Video, { Like, Comment } from "./video";
-import { SanityUser } from "./user";
-import React from "react";
+import type { ReactNode } from "react";
+import type { Comment, Like, Video } from "./video";
 
-export interface HomeProps { videos: Video[]; }
-export interface VideoCardProps { post: Video; }
-export interface NoResultsProps { text: string; }
-export interface DetailProps { postDetails: Video; }
-export interface FetcherProps { params: { id: string; searchTerm?: string; }}
-export interface QueryFetcherProps { query: { topic: string; }};
-export interface LayoutProps { children: React.ReactNode }
-export interface SearchProps { videos: Video[]; }
-export interface LikeButtonProps {
-  handleLike: () => void;
-  handleDislike: () => void;
-  likes: Like[];
+export interface HomeProps {
+  videos: Video[];
 }
+
+export interface VideoCardProps {
+  post: Video;
+}
+
+export interface NoResultsProps {
+  text: string;
+}
+
+export interface QueryFetcherProps {
+  query: { topic: string };
+}
+
+export interface LayoutProps {
+  children: ReactNode;
+}
+
+export interface SearchProps {
+  videos: Video[];
+}
+
+export interface LikeButtonProps {
+  likes: Like[];
+  postId: string;
+}
+
 export interface ListProps {
   items: string[];
   mt: boolean;
 }
+
+export interface VideoPlayerProps {
+  url: string;
+  postId: string;
+}
+export interface BiggerVideoPlayerProps extends Omit<VideoPlayerProps, "postId"> {}
+
+export interface SidebarProps {
+  children: ReactNode;
+}
+
 export interface CommentsProps {
   comments: Comment[];
-  comment: string;
-  setComment: React.Dispatch<React.SetStateAction<string>>;
-  addComment: (submitEvent: any) => any;
-  isPostingComment: boolean;
+  users: SanityUser[];
+  postId: string;
 }
-export interface ProfileProps {
-  data: {
-    user: SanityUser,
-    userVideos: Video[],
-    userLikedVideos: Video[]
-  }
+
+export interface InfiniteItems {
+  [key: string]: any;
+}
+
+export interface PageProps {
+  params: InfiniteItems;
+  searchParams: InfiniteItems;
+}
+
+export interface LayoutProps {
+  children: ReactNode;
 }
