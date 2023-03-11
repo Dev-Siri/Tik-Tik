@@ -9,6 +9,14 @@ export interface VideoCardProps {
   post: Video;
 }
 
+export interface ConditionalUserProps {
+  children: ReactNode;
+}
+
+export interface UserIconProps {
+  children: ReactNode;
+}
+
 export interface NoResultsProps {
   text: string;
 }

@@ -2,45 +2,28 @@ import lazy from "next/dynamic";
 
 import type { FC } from "react";
 
-import useAuthStore from "@/store/authStore";
-
 import { IoMdAdd } from "@react-icons/all-files/io/IoMdAdd";
 
-const GoogleLogin = lazy(() => import("@/components/GoogleLogin"));
+const UserIcon = lazy(() => import("@/components/UserIcon"), { ssr: false });
 const SearchBar = lazy(() => import("@/components/SearchBar"));
-const Logout = lazy(() => import("@/components/Logout"));
 const Image = lazy(() => import("next/image"));
 const Link = lazy(() => import("next/link"));
 
-const Navbar: FC = () => {
-  const { userProfile } = useAuthStore.getState();
-
-  return (
-    <nav className="w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4">
-      <Link href="/" className="w-[100px] md:w-[130px]">
-        <Image src="/logo.png" alt="TikTik" height={512} width={1809} className="cursor-pointer" priority />
+const Navbar: FC = () => (
+  <nav className="w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4">
+    <Link href="/" className="w-[100px] md:w-[130px]">
+      <Image src="/logo.png" alt="TikTik" height={512} width={1809} className="cursor-pointer" priority />
+    </Link>
+    <section className="relative hidden md:block">
+      <SearchBar />
+    </section>
+    <UserIcon>
+      <Link href="/upload" className="border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2">
+        <IoMdAdd className="text-xl" /> {` `}
+        <span className="hidden md:block">Upload</span>
       </Link>
-      <section className="relative hidden md:block">
-        <SearchBar />
-      </section>
-      {userProfile ? (
-        <section className="flex gap-5 md:gap-10">
-          <Link href="/upload" className="border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2">
-            <IoMdAdd className="text-xl" /> {` `}
-            <span className="hidden md:block">Upload</span>
-          </Link>
-          {userProfile.image && (
-            <Link href={`/profile/${userProfile._id}`}>
-              <Image width={40} height={40} className="rounded-full cursor-pointer" src={userProfile.image} alt="Profile photo" />
-            </Link>
-          )}
-          <Logout />
-        </section>
-      ) : (
-        <GoogleLogin />
-      )}
-    </nav>
-  );
-};
+    </UserIcon>
+  </nav>
+);
 
 export default Navbar;

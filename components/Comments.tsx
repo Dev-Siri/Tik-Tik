@@ -27,6 +27,7 @@ const Comments: FC<CommentsProps> = ({ comments, users, postId }) => {
     setIsPostingComment(true);
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${postId}`, {
+      method: "PUT",
       body: JSON.stringify({
         userId: userProfile?._id,
         comment,
@@ -76,7 +77,7 @@ const Comments: FC<CommentsProps> = ({ comments, users, postId }) => {
               value={comment}
               onChange={event => setComment(event.target.value)}
               type="text"
-              className="rounded-lg bg-primary px-6 py-4 text-medium font-medium border-2 w-[250px] md:w-[700px] lg:w-[350px] border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 flex-1"
+              className="rounded-lg bg-primary px-6 py-4 text-medium font-medium border-2 w-[40vw] border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 flex-1"
             />
             <button type="submit" className="text-md text-gray-400">
               {isPostingComment ? "Commenting..." : "Comment"}

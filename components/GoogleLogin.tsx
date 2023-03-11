@@ -11,7 +11,7 @@ const GoogleLogin: FC = () => {
   const handleSuccess = async (response: CredentialResponse) => {
     const { createOrGetUser } = await import("@/utils");
 
-    createOrGetUser(response, addUser);
+    await createOrGetUser(response, addUser);
   };
 
   return <ReactGoogleLogin onSuccess={handleSuccess} onError={() => alert("Failed to Login. Please try again later.")} />;

@@ -71,7 +71,7 @@ const Upload: PageComponent = () => {
 
   return (
     <section className="flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
-      <div className="bg-white w-[60%] rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-between items-center p-14 pt-6">
+      <article className="bg-white w-[60%] rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-between items-center p-14 pt-6">
         <section>
           <p className="text-2xl font-bold">Upload a Video</p>
           <p className="text-md text-gray-400 mt-1">Post a Video to your account</p>
@@ -141,7 +141,7 @@ const Upload: PageComponent = () => {
             </button>
           </div>
         </section>
-      </div>
+      </article>
     </section>
   );
 };
