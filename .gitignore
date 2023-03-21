@@ -10,6 +10,9 @@ node_modules
 /.next/
 /out/
 
+# sanity
+.sanity
+
 # production
 /build
 dist
