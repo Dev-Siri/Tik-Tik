@@ -1,22 +1,20 @@
-import type { RouteHandler } from "@/types";
-
 import client from "@/sanity/lib/client";
 import { allPostsQuery } from "@/utils";
 
 export const dynamic = "force-dynamic";
 
-export const GET: RouteHandler = async () => {
+export async function GET() {
   const query = allPostsQuery();
 
   const data = await client.fetch(query);
 
   return new Response(JSON.stringify(data));
-};
+}
 
-export const POST: RouteHandler = async request => {
+export async function POST(request: Request) {
   const document = await request.json();
 
   await client.create(document);
 
   return new Response("Video Created", { status: 201 });
-};
+}

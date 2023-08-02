@@ -33,22 +33,3 @@ export interface LikeButtonProps {
   likes: Like[];
   postId: string;
 }
-
-export interface ListProps {
-  items: string[];
-  mt: boolean;
-}
-
-export interface VideoPlayerProps {
-  url: string;
-  postId: string;
-}
-
-export interface PageProps {
-  params: Record<string, string>;
-  searchParams: Record<string, string>;
-}
-
-export interface LayoutProps {
-  children: ReactNode;
-}

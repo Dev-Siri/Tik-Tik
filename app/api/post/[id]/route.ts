@@ -1,19 +1,21 @@
-import type { RouteHandler } from "@/types";
-
 import client from "@/sanity/lib/client";
 import { postDetailQuery } from "@/utils";
 
 export const dynamic = "force-dynamic";
 
-export const GET: RouteHandler = async (_, { params: { id } }) => {
+interface Params {
+  params: { id: string };
+}
+
+export async function GET(_: Request, { params: { id } }: Params) {
   const query = postDetailQuery(id);
 
   const data = await client.fetch(query);
 
   return new Response(JSON.stringify(data[0]));
-};
+}
 
-export const PUT: RouteHandler = async (request, { params: { id } }) => {
+export async function PUT(request: Request, { params: { id } }: Params) {
   const { comment, userId } = await request.json();
 
   const data = await client
@@ -32,4 +34,4 @@ export const PUT: RouteHandler = async (request, { params: { id } }) => {
     .commit();
 
   return new Response(JSON.stringify({ newComment: data }));
-};
+}

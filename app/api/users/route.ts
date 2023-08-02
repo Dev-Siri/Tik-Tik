@@ -1,11 +1,9 @@
-import type { RouteHandler } from "@/types";
-
 import client from "@/sanity/lib/client";
 import { allUsersQuery } from "@/utils";
 
 export const dynamic = "force-dynamic";
 
-export const GET: RouteHandler = async () => {
+export async function GET() {
   const data = await client.fetch(allUsersQuery());
 
   if (data) {
@@ -13,4 +11,4 @@ export const GET: RouteHandler = async () => {
   } else {
     return new Response("[]", { status: 404 });
   }
-};
+}

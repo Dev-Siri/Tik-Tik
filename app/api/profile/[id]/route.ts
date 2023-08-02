@@ -1,11 +1,13 @@
-import type { RouteHandler } from "@/types";
-
 import client from "@/sanity/lib/client";
 import { singleUserQuery, userCreatedPostsQuery, userLikedPostsQuery } from "../../../../utils";
 
 export const dynamic = "force-dynamic";
 
-export const GET: RouteHandler = async (_, { params: { id } }) => {
+interface Params {
+  params: { id: string };
+}
+
+export async function GET(_: Request, { params: { id } }: Params) {
   const query = singleUserQuery(id);
   const userVideoQuery = userCreatedPostsQuery(id);
   const userLikedVideoQuery = userLikedPostsQuery(id);
@@ -17,4 +19,4 @@ export const GET: RouteHandler = async (_, { params: { id } }) => {
   ]);
 
   return new Response(JSON.stringify({ user: users[0], userVideos, userLikedVideos }));
-};
+}

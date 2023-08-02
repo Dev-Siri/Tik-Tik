@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import type { PageComponent, Video } from "@/types";
+import type { Video } from "@/types";
 
 import useAuthStore from "@/store/authStore";
 import { fetchAllUsers } from "@/utils/user";
@@ -12,14 +12,18 @@ import { GoVerified } from "@react-icons/all-files/go/GoVerified";
 
 const BiggerVideoPlayer = lazy(() => import("@/components/BiggerVideoPlayer"));
 const LikeButton = lazy(() => import("@/components/LikeButton"));
-const Comments = lazy(() => import("@/components/Comments"));
+const Comments = lazy(() => import("./comments"));
 
-const getVideo = async (postId: string): Promise<Video> => {
+interface Props {
+  params: { id: string };
+}
+
+async function getVideo(postId: string): Promise<Video> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${postId}`, { cache: "no-store" });
   return response.json();
-};
+}
 
-const Detail: PageComponent = async ({ params: { id } }) => {
+export default async function Detail({ params: { id } }: Props) {
   const [post, users] = await Promise.all([getVideo(id), fetchAllUsers()]);
 
   const { userProfile } = useAuthStore.getState();
@@ -50,6 +54,4 @@ const Detail: PageComponent = async ({ params: { id } }) => {
       </article>
     </section>
   );
-};
-
-export default Detail;
+}

@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import type { PageComponent } from "@/types";
 import type { SanityAssetDocument } from "@sanity/client";
 
 import useAuthStore from "@/store/authStore";
@@ -12,7 +11,7 @@ import { FaCloudUploadAlt } from "@react-icons/all-files/fa/FaCloudUploadAlt";
 
 export const dynamic = "force-static";
 
-const Upload: PageComponent = () => {
+export default function Upload() {
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | null>(null);
   const [wrongFileType, setWrongFileType] = useState(false);
   const [category, setCategory] = useState(topics[0].name);
@@ -144,6 +143,4 @@ const Upload: PageComponent = () => {
       </article>
     </section>
   );
-};
-
-export default Upload;
+}

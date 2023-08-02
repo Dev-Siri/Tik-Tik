@@ -1,15 +1,18 @@
 "use client";
-import type { VideoPlayerProps } from "@/types";
-import { lazy, useRef, useState, type FC } from "react";
+import Link from "next/link";
+import { useRef, useState } from "react";
 
-import { HiVolumeUp } from "@react-icons/all-files/hi/HiVolumeUp";
-import { HiVolumeOff } from "@react-icons/all-files/hi/HiVolumeOff";
-import { BsFillPlayFill } from "@react-icons/all-files/bs/BsFillPlayFill";
 import { BsFillPauseFill } from "@react-icons/all-files/bs/BsFillPauseFill";
+import { BsFillPlayFill } from "@react-icons/all-files/bs/BsFillPlayFill";
+import { HiVolumeOff } from "@react-icons/all-files/hi/HiVolumeOff";
+import { HiVolumeUp } from "@react-icons/all-files/hi/HiVolumeUp";
 
-const Link = lazy(() => import("next/link"));
+interface Props {
+  url: string;
+  postId: string;
+}
 
-const VideoPlayer: FC<VideoPlayerProps> = ({ url, postId }) => {
+export default function VideoPlayer({ url, postId }: Props) {
   const [isHover, setIsHover] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
@@ -63,6 +66,4 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ url, postId }) => {
       </div>
     </section>
   );
-};
-
-export default VideoPlayer;
+}

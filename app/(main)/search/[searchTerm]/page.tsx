@@ -1,6 +1,6 @@
 import lazy from "next/dynamic";
 
-import type { PageComponent, Video } from "@/types";
+import type { Video } from "@/types";
 
 import { fetchAllUsers } from "@/utils/user";
 
@@ -11,12 +11,17 @@ import { GoVerified } from "@react-icons/all-files/go/GoVerified";
 const Image = lazy(() => import("next/image"));
 const Link = lazy(() => import("next/link"));
 
-const getSearchResults = async (searchTerm: string): Promise<Video[]> => {
+interface Props {
+  params: { searchTerm: string };
+  searchParams: { type: string };
+}
+
+async function getSearchResults(searchTerm: string): Promise<Video[]> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/search/${searchTerm}`);
   return response.json();
-};
+}
 
-const Search: PageComponent = async ({ params: { searchTerm }, searchParams: { type } }) => {
+export default async function Search({ params: { searchTerm }, searchParams: { type } }: Props) {
   const [videos, users] = await Promise.all([getSearchResults(searchTerm), fetchAllUsers()]);
   const isAccounts = type === "accounts";
 
@@ -72,6 +77,4 @@ const Search: PageComponent = async ({ params: { searchTerm }, searchParams: { t
       )}
     </article>
   );
-};
-
-export default Search;
+}

@@ -1,16 +1,14 @@
 "use client";
-import { GoVerified } from "@react-icons/all-files/go/GoVerified";
-import lazy from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
 import { useState, type FormEventHandler } from "react";
 
 import type { Comment, SanityUser } from "@/types";
 
 import useAuthStore from "@/store/authStore";
 
-import NoResults from "./NoResults";
-
-const Image = lazy(() => import("next/image"));
-const Link = lazy(() => import("next/link"));
+import NoResults from "@/components/NoResults";
+import { GoVerified } from "@react-icons/all-files/go/GoVerified";
 
 interface Props {
   comments: Comment[];

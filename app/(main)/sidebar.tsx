@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { AiFillHome } from "@react-icons/all-files/ai/AiFillHome";
 import { AiOutlineMenu } from "@react-icons/all-files/ai/AiOutlineMenu";
-import Discover from "./Discover";
-import Footer from "./Footer";
-import SuggestedAccounts from "./SuggestedAccounts";
+import Discover from "./discover";
+import Footer from "./footer";
+import SuggestedAccounts from "./suggested-accounts";
 
 const normalLink = "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded";
 

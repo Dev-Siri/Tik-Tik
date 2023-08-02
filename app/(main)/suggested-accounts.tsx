@@ -1,11 +1,9 @@
-import lazy from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
 
 import { fetchAllUsers } from "@/utils/user";
 
 import { GoVerified } from "@react-icons/all-files/go/GoVerified";
-
-const Image = lazy(() => import("next/image"));
-const Link = lazy(() => import("next/link"));
 
 export default async function SuggestedAccounts() {
   const users = await fetchAllUsers();
