@@ -1,6 +1,9 @@
-import { client, postDetailQuery } from "@/utils";
-
 import type { RouteHandler } from "@/types";
+
+import client from "@/sanity/lib/client";
+import { postDetailQuery } from "@/utils";
+
+export const dynamic = "force-dynamic";
 
 export const GET: RouteHandler = async (_, { params: { id } }) => {
   const query = postDetailQuery(id);
@@ -28,5 +31,5 @@ export const PUT: RouteHandler = async (request, { params: { id } }) => {
     ])
     .commit();
 
-  return new Response(JSON.stringify(data));
+  return new Response(JSON.stringify({ newComment: data }));
 };

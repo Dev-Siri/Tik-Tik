@@ -1,6 +1,9 @@
-import { allPostsQuery, client } from "@/utils";
-
 import type { RouteHandler } from "@/types";
+
+import client from "@/sanity/lib/client";
+import { allPostsQuery } from "@/utils";
+
+export const dynamic = "force-dynamic";
 
 export const GET: RouteHandler = async () => {
   const query = allPostsQuery();

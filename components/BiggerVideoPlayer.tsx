@@ -1,15 +1,17 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useRef, useState, type FC } from "react";
-
-import type { BiggerVideoPlayerProps } from "@/types";
+import { useRef, useState } from "react";
 
 import { BsFillPlayFill } from "@react-icons/all-files/bs/BsFillPlayFill";
 import { HiVolumeOff } from "@react-icons/all-files/hi/HiVolumeOff";
 import { HiVolumeUp } from "@react-icons/all-files/hi/HiVolumeUp";
 import { MdCancel } from "@react-icons/all-files/md/MdCancel";
 
-const BiggerVideoPlayer: FC<BiggerVideoPlayerProps> = ({ url }) => {
+interface Props {
+  url: string;
+}
+
+export default function BiggerVideoPlayer({ url }: Props) {
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [playing, setPlaying] = useState(false);
 
@@ -58,6 +60,4 @@ const BiggerVideoPlayer: FC<BiggerVideoPlayerProps> = ({ url }) => {
       </section>
     </article>
   );
-};
-
-export default BiggerVideoPlayer;
+}

@@ -1,6 +1,9 @@
-import { client, singleUserQuery, userCreatedPostsQuery, userLikedPostsQuery } from "../../../../utils";
-
 import type { RouteHandler } from "@/types";
+
+import client from "@/sanity/lib/client";
+import { singleUserQuery, userCreatedPostsQuery, userLikedPostsQuery } from "../../../../utils";
+
+export const dynamic = "force-dynamic";
 
 export const GET: RouteHandler = async (_, { params: { id } }) => {
   const query = singleUserQuery(id);

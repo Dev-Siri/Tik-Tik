@@ -1,9 +1,9 @@
 "use client";
 import { GoVerified } from "@react-icons/all-files/go/GoVerified";
 import lazy from "next/dynamic";
-import { useState, type FC, type FormEventHandler } from "react";
+import { useState, type FormEventHandler } from "react";
 
-import type { CommentsProps } from "@/types";
+import type { Comment, SanityUser } from "@/types";
 
 import useAuthStore from "@/store/authStore";
 
@@ -12,7 +12,13 @@ import NoResults from "./NoResults";
 const Image = lazy(() => import("next/image"));
 const Link = lazy(() => import("next/link"));
 
-const Comments: FC<CommentsProps> = ({ comments, users, postId }) => {
+interface Props {
+  comments: Comment[];
+  users: SanityUser[];
+  postId: string;
+}
+
+export default function Comments({ comments, users, postId }: Props) {
   const { userProfile } = useAuthStore();
 
   const [displayedComments, setDisplayedComments] = useState(comments);
@@ -34,9 +40,9 @@ const Comments: FC<CommentsProps> = ({ comments, users, postId }) => {
       }),
     });
 
-    const { comments } = await response.json();
+    const { newComment } = await response.json();
 
-    setDisplayedComments(comments);
+    setDisplayedComments(prevDisplayedComments => [...prevDisplayedComments, newComment]);
     setComment("");
     setIsPostingComment(false);
   };
@@ -87,6 +93,4 @@ const Comments: FC<CommentsProps> = ({ comments, users, postId }) => {
       )}
     </article>
   );
-};
-
-export default Comments;
+}

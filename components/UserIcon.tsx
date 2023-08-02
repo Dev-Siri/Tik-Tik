@@ -1,17 +1,16 @@
 "use client";
 import lazy from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
 
-import type { UserIconProps } from "@/types";
-import type { FC } from "react";
+import type { PropsWithChildren } from "react";
 
 import useAuthStore from "@/store/authStore";
 
 const GoogleLogin = lazy(() => import("@/components/GoogleLogin"));
 const Logout = lazy(() => import("@/components/Logout"));
-const Image = lazy(() => import("next/image"));
-const Link = lazy(() => import("next/link"));
 
-const UserIcon: FC<UserIconProps> = ({ children }) => {
+export default function UserIcon({ children }: PropsWithChildren) {
   const { userProfile } = useAuthStore();
 
   return userProfile ? (
@@ -25,6 +24,4 @@ const UserIcon: FC<UserIconProps> = ({ children }) => {
   ) : (
     <GoogleLogin />
   );
-};
-
-export default UserIcon;
+}

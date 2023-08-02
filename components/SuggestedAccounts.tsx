@@ -1,8 +1,5 @@
 import lazy from "next/dynamic";
 
-import type { AsyncFC } from "@/types";
-import type { FC } from "react";
-
 import { fetchAllUsers } from "@/utils/user";
 
 import { GoVerified } from "@react-icons/all-files/go/GoVerified";
@@ -10,7 +7,7 @@ import { GoVerified } from "@react-icons/all-files/go/GoVerified";
 const Image = lazy(() => import("next/image"));
 const Link = lazy(() => import("next/link"));
 
-const SuggestedAccounts: AsyncFC = async () => {
+export default async function SuggestedAccounts() {
   const users = await fetchAllUsers();
 
   return (
@@ -32,8 +29,4 @@ const SuggestedAccounts: AsyncFC = async () => {
       ))}
     </article>
   );
-};
-
-// Async Component TypeScript workaround for now
-// * TEMPORARY
-export default SuggestedAccounts as unknown as FC;
+}

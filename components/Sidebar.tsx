@@ -1,13 +1,12 @@
 "use client";
-import { useState, type FC } from "react";
 import Link from "next/link";
+import { useState, type FC } from "react";
+
+import type { SidebarProps } from "@/types";
+
 import { AiFillHome } from "@react-icons/all-files/ai/AiFillHome";
 import { AiOutlineMenu } from "@react-icons/all-files/ai/AiOutlineMenu";
 import { ImCancelCircle } from "@react-icons/all-files/im/ImCancelCircle";
-import Discover from "./Discover";
-import SuggestedAccounts from "./SuggestedAccounts";
-import Footer from "./Footer";
-import type { SidebarProps } from "@/types";
 
 const normalLink = "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded";
 

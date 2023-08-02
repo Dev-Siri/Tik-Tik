@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Comment, Like, Video } from "./video";
+import type { Like, Video } from "./video";
 
 export interface HomeProps {
   videos: Video[];
@@ -10,10 +10,6 @@ export interface VideoCardProps {
 }
 
 export interface ConditionalUserProps {
-  children: ReactNode;
-}
-
-export interface UserIconProps {
   children: ReactNode;
 }
 
@@ -47,25 +43,13 @@ export interface VideoPlayerProps {
   url: string;
   postId: string;
 }
-export interface BiggerVideoPlayerProps extends Omit<VideoPlayerProps, "postId"> {}
-
 export interface SidebarProps {
   children: ReactNode;
 }
 
-export interface CommentsProps {
-  comments: Comment[];
-  users: SanityUser[];
-  postId: string;
-}
-
-export interface InfiniteItems {
-  [key: string]: any;
-}
-
 export interface PageProps {
-  params: InfiniteItems;
-  searchParams: InfiniteItems;
+  params: Record<string, string>;
+  searchParams: Record<string, string>;
 }
 
 export interface LayoutProps {

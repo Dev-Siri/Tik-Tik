@@ -1,4 +1,6 @@
 import lazy from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import type { PageComponent, Video } from "@/types";
@@ -11,8 +13,6 @@ import { GoVerified } from "@react-icons/all-files/go/GoVerified";
 const BiggerVideoPlayer = lazy(() => import("@/components/BiggerVideoPlayer"));
 const LikeButton = lazy(() => import("@/components/LikeButton"));
 const Comments = lazy(() => import("@/components/Comments"));
-const Image = lazy(() => import("next/image"));
-const Link = lazy(() => import("next/link"));
 
 const getVideo = async (postId: string): Promise<Video> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${postId}`, { cache: "no-store" });

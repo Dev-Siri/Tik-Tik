@@ -1,10 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState, type FC } from "react";
+import { useState } from "react";
 
 import { BiSearch } from "@react-icons/all-files/bi/BiSearch";
 
-const SearchBar: FC = () => {
+export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
 
@@ -27,6 +27,4 @@ const SearchBar: FC = () => {
       </button>
     </form>
   );
-};
-
-export default SearchBar;
+}

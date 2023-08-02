@@ -2,6 +2,8 @@ import { client } from "@/utils";
 
 import type { RouteHandler } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 export const PATCH: RouteHandler = async request => {
   const { userId, postId, like } = await request.json();
 

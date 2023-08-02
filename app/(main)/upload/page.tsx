@@ -27,7 +27,7 @@ const Upload: PageComponent = () => {
     const fileTypes = ["video/mp4", "video/webm", "video/ogg"];
 
     if (fileTypes.includes(selectedFile.type)) {
-      const { client } = await import("@/utils");
+      const { default: client } = await import("@/sanity/lib/client");
       const data = await client.assets.upload("file", selectedFile, {
         contentType: selectedFile.type,
         filename: selectedFile.name,
