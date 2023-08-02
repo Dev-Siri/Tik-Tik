@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { PropsWithChildren } from "react";
 
 import useAuthStore from "@/store/authStore";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const GoogleLogin = lazy(() => import("@/components/GoogleLogin"));
 const Logout = lazy(() => import("@/components/Logout"));
@@ -22,6 +23,8 @@ export default function UserIcon({ children }: PropsWithChildren) {
       <Logout />
     </section>
   ) : (
-    <GoogleLogin />
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN!}>
+      <GoogleLogin />
+    </GoogleOAuthProvider>
   );
 }

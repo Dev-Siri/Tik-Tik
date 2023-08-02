@@ -43,9 +43,6 @@ export interface VideoPlayerProps {
   url: string;
   postId: string;
 }
-export interface SidebarProps {
-  children: ReactNode;
-}
 
 export interface PageProps {
   params: Record<string, string>;

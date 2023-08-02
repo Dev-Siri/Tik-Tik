@@ -2,14 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   scrollbar-width: none;
 }
 
-:is(html, body)::-webkit-scrollbar { display: none; }
+:is(html, body)::-webkit-scrollbar {
+  display: none;
+}
 
 a {
   color: inherit;
@@ -17,6 +20,18 @@ a {
 }
 
 @layer utilities {
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+}
+
+#sidebar-toggle:not(:checked) + #sidebar-main {
+  display: none;
+}
+
+#sidebar-toggle:checked + #sidebar-main {
+  display: flex;
 }

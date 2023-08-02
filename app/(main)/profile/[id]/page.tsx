@@ -1,21 +1,22 @@
-import lazy from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
 
-import type { PageComponent, Video } from "@/types";
+import type { Video } from "@/types";
 
 import NoResults from "@/components/NoResults";
 import VideoCard from "@/components/VideoCard";
 import { GoVerified } from "@react-icons/all-files/go/GoVerified";
 
-const Link = lazy(() => import("next/link"));
-const Image = lazy(() => import("next/image"));
+interface Props {
+  params: { id: string };
+  searchParams: {
+    type: "recent" | "liked";
+  };
+}
 
-const getProfile = async (id: string) => {
+export default async function Profile({ params: { id }, searchParams: { type = "recent" } }: Props) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/profile/${id}`);
-  return response.json();
-};
-
-const Profile: PageComponent = async ({ params: { id }, searchParams: { type = "recent" } }) => {
-  const { user, userLikedVideos, userVideos } = await getProfile(id);
+  const { user, userLikedVideos, userVideos } = await response.json();
   const showUserVideos = type === "recent";
   const videosList: Video[] = showUserVideos ? userVideos : userLikedVideos;
 
@@ -56,6 +57,4 @@ const Profile: PageComponent = async ({ params: { id }, searchParams: { type = "
       </section>
     </article>
   );
-};
-
-export default Profile;
+}
