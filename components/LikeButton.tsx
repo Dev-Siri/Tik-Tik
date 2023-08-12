@@ -1,13 +1,18 @@
 "use client";
-import { useEffect, useState, type FC } from "react";
+import { useEffect, useState } from "react";
 
-import type { LikeButtonProps } from "../types";
+import type { Like } from "@/types";
 
 import useAuthStore from "@/store/authStore";
 
 import { MdFavorite } from "@react-icons/all-files/md/MdFavorite";
 
-const LikeButton: FC<LikeButtonProps> = ({ likes, postId }) => {
+interface Props {
+  likes: Like[];
+  postId: string;
+}
+
+export default function LikeButton({ likes, postId }: Props) {
   const filteredLikes = likes?.filter(like => like._ref === userProfile?._id);
   const { userProfile } = useAuthStore();
 
@@ -49,6 +54,4 @@ const LikeButton: FC<LikeButtonProps> = ({ likes, postId }) => {
       </div>
     </div>
   );
-};
-
-export default LikeButton;
+}

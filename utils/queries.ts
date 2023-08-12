@@ -94,11 +94,7 @@ export const singleUserQuery = (userId: string | string[]) => {
   return query;
 };
 
-export const allUsersQuery = () => {
-  const query = `*[_type == "user"]`;
-
-  return query;
-};
+export const allUsersQuery = `*[_type == "user"]`;
 
 export const userCreatedPostsQuery = (userId: string | string[]) => {
   const query = `*[ _type == 'post' && userId == '${userId}'] | order(_createdAt desc){

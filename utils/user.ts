@@ -18,8 +18,3 @@ export const createOrGetUser = async (response: CredentialResponse, addUser: (us
 
   await fetch("/api/auth", { method: "POST", body: JSON.stringify(user) });
 };
-
-export const fetchAllUsers = async (): Promise<SanityUser[]> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`);
-  return response.json();
-};

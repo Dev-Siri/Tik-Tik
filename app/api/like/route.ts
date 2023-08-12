@@ -1,4 +1,4 @@
-import { client } from "@/utils";
+import client from "@/sanity/lib/client";
 
 export const dynamic = "force-dynamic";
 

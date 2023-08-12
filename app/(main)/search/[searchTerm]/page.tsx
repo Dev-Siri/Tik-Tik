@@ -1,12 +1,14 @@
 import lazy from "next/dynamic";
 
-import type { Video } from "@/types";
+import type { SanityUser, Video } from "@/types";
 
-import { fetchAllUsers } from "@/utils/user";
+import client from "@/sanity/lib/client";
+import { allUsersQuery } from "@/utils";
+
+import { GoVerified } from "@react-icons/all-files/go/GoVerified";
 
 import NoResults from "@/components/NoResults";
 import VideoCard from "@/components/VideoCard";
-import { GoVerified } from "@react-icons/all-files/go/GoVerified";
 
 const Image = lazy(() => import("next/image"));
 const Link = lazy(() => import("next/link"));
@@ -22,10 +24,10 @@ async function getSearchResults(searchTerm: string): Promise<Video[]> {
 }
 
 export default async function Search({ params: { searchTerm }, searchParams: { type } }: Props) {
-  const [videos, users] = await Promise.all([getSearchResults(searchTerm), fetchAllUsers()]);
+  const [videos, users] = await Promise.all([getSearchResults(searchTerm), client.fetch<SanityUser[] | null>(allUsersQuery)]);
   const isAccounts = type === "accounts";
 
-  const searchedAccounts = users.filter(user => user.userName.toLowerCase().includes(searchTerm?.toLowerCase()));
+  const searchedAccounts = users?.filter(user => user.userName.toLowerCase().includes(searchTerm?.toLowerCase())) || [];
 
   return (
     <article className="w-full">

@@ -3,16 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import type { Video } from "@/types";
+import type { SanityUser, Video } from "@/types";
 
 import useAuthStore from "@/store/authStore";
-import { fetchAllUsers } from "@/utils/user";
 
+import client from "@/sanity/lib/client";
+import { allUsersQuery } from "@/utils";
+import { BsFillPlayFill } from "@react-icons/all-files/bs/BsFillPlayFill";
 import { GoVerified } from "@react-icons/all-files/go/GoVerified";
+import { HiVolumeOff } from "@react-icons/all-files/hi/HiVolumeOff";
+import { HiVolumeUp } from "@react-icons/all-files/hi/HiVolumeUp";
+import { MdCancel } from "@react-icons/all-files/md/MdCancel";
 
-const BiggerVideoPlayer = lazy(() => import("@/components/BiggerVideoPlayer"));
+import Comments from "./comments";
+import SideView from "./side-view";
 const LikeButton = lazy(() => import("@/components/LikeButton"));
-const Comments = lazy(() => import("./comments"));
 
 interface Props {
   params: { id: string };
@@ -24,7 +29,7 @@ async function getVideo(postId: string): Promise<Video> {
 }
 
 export default async function Detail({ params: { id } }: Props) {
-  const [post, users] = await Promise.all([getVideo(id), fetchAllUsers()]);
+  const [post, users] = await Promise.all([getVideo(id), client.fetch<SanityUser[] | null>(allUsersQuery)]);
 
   const { userProfile } = useAuthStore.getState();
 
@@ -32,7 +37,15 @@ export default async function Detail({ params: { id } }: Props) {
 
   return (
     <section className="flex w-full absolute left-0 -mt-6 bg-white no-scrollbar">
-      <BiggerVideoPlayer url={post.video.asset.url} />
+      <SideView
+        icons={{
+          play: <BsFillPlayFill className="text-white text-6xl lg:text-8xl" />,
+          cancel: <MdCancel className="text-white text-[35px]" />,
+          muted: <HiVolumeOff className="text-white text-2xl lg:text-4xl" />,
+          volumeUp: <HiVolumeUp className="text-white text-2xl lg:text-4xl" />,
+        }}
+        url={post.video.asset.url}
+      />
       <article className="relative w-[1000px] md:w-[900px] lg:w-[700px]">
         <div className="lg:mt-20 mt-10">
           <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
@@ -49,7 +62,7 @@ export default async function Detail({ params: { id } }: Props) {
           </div>
           <p className="px-10 text-lg text-gray-600">{post.caption}</p>
           <div className="mt-10 px-10">{userProfile && <LikeButton likes={post.likes} postId={post?._id} />}</div>
-          <Comments comments={post.comments} users={users} postId={post._id} />
+          <Comments comments={post.comments} users={users ?? []} postId={post._id} />
         </div>
       </article>
     </section>

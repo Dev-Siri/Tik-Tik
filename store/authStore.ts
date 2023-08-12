@@ -1,7 +1,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import type { AuthStore } from "../types";
+import type { SanityUser } from "@/types";
+
+interface AuthStore {
+  userProfile: SanityUser | null;
+  addUser(user: SanityUser): void;
+  removeUser(): void;
+}
 
 const useAuthStore = create(
   persist<AuthStore>(

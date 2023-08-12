@@ -1,11 +1,9 @@
 "use client";
-import type { FC } from "react";
-
 import useAuthStore from "@/store/authStore";
 
 import { AiOutlineLogout } from "@react-icons/all-files/ai/AiOutlineLogout";
 
-const Logout: FC = () => {
+export default function Logout() {
   const { removeUser } = useAuthStore();
 
   return (
@@ -22,6 +20,4 @@ const Logout: FC = () => {
       <AiOutlineLogout color="red" fontSize={21} />
     </button>
   );
-};
-
-export default Logout;
+}
