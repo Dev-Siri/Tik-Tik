@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, type FormEventHandler } from "react";
+import { useState, type FormEvent } from "react";
 
 import type { Comment, SanityUser } from "@/types";
 
@@ -23,7 +23,7 @@ export default function Comments({ comments, users, postId }: Props) {
   const [isPostingComment, setIsPostingComment] = useState(false);
   const [comment, setComment] = useState("");
 
-  const addComment: FormEventHandler<HTMLFormElement> = async event => {
+  async function addComment(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!userProfile && !comment) return;
@@ -43,7 +43,7 @@ export default function Comments({ comments, users, postId }: Props) {
     setDisplayedComments(prevDisplayedComments => [...prevDisplayedComments, newComment]);
     setComment("");
     setIsPostingComment(false);
-  };
+  }
 
   return (
     <article className="border-t-2 border-gray-200 pt-4 px-10 bg-[#F8F8F8] border-b-2 lg:pb-0 pb-[100px]">

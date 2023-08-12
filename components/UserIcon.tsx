@@ -5,16 +5,19 @@ import Link from "next/link";
 
 import type { PropsWithChildren } from "react";
 
+import useAuthStore from "@/store/authStore";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const GoogleLogin = lazy(() => import("@/components/GoogleLogin"));
 const Logout = lazy(() => import("@/components/Logout"));
 
 export default function UserIcon({ children }: PropsWithChildren) {
-  return false ? (
+  const { userProfile } = useAuthStore();
+
+  return userProfile ? (
     <section className="flex gap-5 md:gap-10">
       {children}
-      <Link href={`/profile/${`userProfile._id`}`}>
+      <Link href={`/profile/${userProfile._id}`}>
         <Image width={40} height={40} className="rounded-full cursor-pointer" src={`userProfile.image`} alt="Profile photo" />
       </Link>
       <Logout />
